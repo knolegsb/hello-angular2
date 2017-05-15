@@ -2,28 +2,46 @@
 
 <form #newform="ngForm" (ngSubmit)="onSubmit(newform)">
     <label for="id" style="width:100px; display:inline-block">Id: </label>
-    <input type="text" name="id" ngModel #id="ngModel" required><br />
-    <div [hidden]="id.touched" style="background-color:red;color:white">
-        Enter Id
+    <input type="text" name="id" ngModel #id="ngModel" required minlenth="3" maxlength="3"><br />
+    <div *ngIf="id.touched && id.errors">
+        <div *ngIf="id.errors.required" style="background-color:red;color:white">
+            Enter Id
+        </div>
+        <div *ngIf="id.errors.minlength || id.errors.maxlength" style="background-color:red;color:white;">
+            Enter 3 letters
+        </div>
     </div>
 
     <label for="bookName" style="width:100px; display:inline-block">Book Name: </label>
     <input type="text" name="bookName" ngModel #bookName="ngModel" required><br />
-    <div [hidden]="bookName.touched" style="background-color:red;color:white">
-        Enter a book name
-    </div>
+    <div *ngIf="name.touched && bookName.errors" >
+        <div *ngIf="bookName.errors.required" style="background-color:red;color:white">
+            Enter Book Name
+        </div>
+        <div *ngIf="name.errors.minlength" style="background-color:red;color:white">
+            Enter greater than 3 letters
+        </div>     
+        <div *ngIf="name.errors.maxlength" style="background-color:red;color:white">
+            Enter less than 50 letters
+        </div>           
+    </div>    
 
     <label for="price" style="width:100px; display:inline-block">Price: </label>
     <input type="number" name="price" ngModel #price="ngModel" required><br />
-    <div [hidden]="price.touched" style="background-color:red;color:white">
-        Enter price
+    <div *ngIf="price.touched">
+        <div *ngIf="price.value < 50" style="background-color:red;color:white">
+            Enter greater than $50
+        </div>   
+        <div *ngIf="price.value > 500" style="background-color:red;color:white">
+            Enter less than $500
+        </div>         
     </div>
 
     <label for="date" style="width:100px; display:inline-block">Date: </label>
     <input type="date" name="date" ngModel #date="ngModel" required><br />
-    <div [hidden]="date.touched" style="background-color:red;color:white">
+    <div *ngIf="date.touched"  [hidden]="date.valid" style="background-color:red;color:white">
         Enter date
-    </div>
+    </div> 
 
     <br />
     <button type="submit">Register</button><br />
