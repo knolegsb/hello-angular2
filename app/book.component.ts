@@ -19,10 +19,11 @@ export class BookComponent {
     constructor(private _formBuilder:FormBuilder){
         
         this.bookForm= _formBuilder.group({
-            id: new FormControl('004', Validators.required),
-            name: new FormControl('Android Game Programming', Validators.required),
-            price:new FormControl('', Validators.required),
-            date:new FormControl('', Validators.required)        
+            // id: new FormControl('004', Validators.required),
+            // name: new FormControl('Android Game Programming', Validators.required),
+            // price:new FormControl('', Validators.required),
+            // date:new FormControl('', Validators.required)        
+            price: new FormControl('', Validators.compose([validNumber]))
         });
         
     }
@@ -38,3 +39,25 @@ export class BookComponent {
     }
 }
 
+function validNumber(c: FormControl){
+    if (c.value == ''){
+        return {
+                valid: false,
+                errorMsg: 'required'
+        };
+    }
+    if (c.value == ''){
+        return {
+            valid:false,
+            errorMsg: 'required'
+        }
+    }
+    let NUMBER_REGEXP = /^[0-9]/;
+    return NUMBER_REGEXP.test(c.value)?{
+        valid: true,
+        errorMsg:''
+    } : {
+        valid: false,
+        errorMsg: 'Must enter numbers'
+    };
+}

@@ -1,7 +1,7 @@
 <h3>Book Registration</h3>
 
 <form [formGroup]="bookForm" #newform (ngSubmit)="onSubmit(newform)">
-    <label for="id" style="width:100px; display:inline-block">Id: </label>
+    <!--<label for="id" style="width:100px; display:inline-block">Id: </label>
     <input type="text" name="id" formControlName="id"><br />
     <div *ngIf="bookForm.controls['id'].touched" [hidden]="bookForm.controls['id'].valid" style="background-color:red;color:white;">
         Enter id
@@ -34,6 +34,12 @@
         <div [innerText]="'name:' + bookForm.controls['name'].value"></div>
         <div [innerText]="'price:' + bookForm.controls['price'].value"></div>
         <div [innerText]="'date:' + bookForm.controls['date'].value"></div>
+    </div>-->
+
+    <label for="name" style="width:100px;display:inline-block">Price: </label>
+    <input type="text" name="name" formControlName="price"><br /><br />
+    <div *ngIf="bookForm.controls['price'].touched && !bookForm.controls['price'].errors.valid" style="background-color:red;color:white;">
+        {{bookForm.controls['price'].errors.errorMsg}}
     </div>
 </form>
 
