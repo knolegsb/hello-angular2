@@ -1,0 +1,12 @@
+.font-red{
+    color:red;
+}
+
+.font-orange{
+    color: orange;
+}
+
+ul{
+    list-style: none;
+    display: inline-block;
+}

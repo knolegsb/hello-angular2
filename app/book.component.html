@@ -1,0 +1,60 @@
+<h3>Book Registration</h3>
+
+<form #newform="ngForm" (ngSubmit)="onSubmit(newform)">
+    <label for="id" style="width:100px; display:inline-block">Id: </label>
+    <input type="text" name="id" ngModel #id="ngModel" required><br />
+    <div [hidden]="id.touched" style="background-color:red;color:white">
+        Enter Id
+    </div>
+
+    <label for="bookName" style="width:100px; display:inline-block">Book Name: </label>
+    <input type="text" name="bookName" ngModel #bookName="ngModel" required><br />
+    <div [hidden]="bookName.touched" style="background-color:red;color:white">
+        Enter a book name
+    </div>
+
+    <label for="price" style="width:100px; display:inline-block">Price: </label>
+    <input type="number" name="price" ngModel #price="ngModel" required><br />
+    <div [hidden]="price.touched" style="background-color:red;color:white">
+        Enter price
+    </div>
+
+    <label for="date" style="width:100px; display:inline-block">Date: </label>
+    <input type="date" name="date" ngModel #date="ngModel" required><br />
+    <div [hidden]="date.touched" style="background-color:red;color:white">
+        Enter date
+    </div>
+
+    <br />
+    <button type="submit">Register</button><br />
+    <br />
+
+    <div style="background-color: gray;">
+        <div [innerText]="'bookId:' + id.value"></div>
+        <div [innerText]="'bookName:' + bookName.value"></div>
+        <div [innerText]="'price:' + price.value"></div>
+        <div [innerText]="'date:' + date.value"></div>
+    </div>
+</form>
+
+<!--<h1>Book</h1>
+<p class="font-orange">{{name}}</p>
+<p class="font-red">{{getName()}}</p>-->
+
+<ul>
+    <li *ngFor = "let book of books" class="font-red"><img src="./assets/images/{{book.img}}" height="80">
+        {{book.name}}
+    </li>
+</ul>
+
+<input type="text" [name]="'bookName'" [size]=30 value="{{name}}"><br />
+
+<h3>Book List</h3>
+<ul>
+    <li *ngFor="let book of books">
+        <book-image [path]="book.img" [title]="book.name" [width]="60" [height]="80" 
+        (selectBook)="onClick(book.name)"></book-image>
+    </li>
+</ul>
+<br />
+Selected Book : <input type="text" name="selectedBook" value="{{bookName}}">
