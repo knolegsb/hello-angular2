@@ -14,20 +14,12 @@ var forms_1 = require("@angular/forms");
 var BookComponent = (function () {
     function BookComponent(_formBuilder) {
         this._formBuilder = _formBuilder;
-        this.bookForm = new forms_1.FormGroup({
+        this.bookForm = _formBuilder.group({
             id: new forms_1.FormControl('004', forms_1.Validators.required),
             name: new forms_1.FormControl('Android Game Programming', forms_1.Validators.required),
             price: new forms_1.FormControl('', forms_1.Validators.required),
             date: new forms_1.FormControl('', forms_1.Validators.required)
         });
-        /*
-        this.bookForm= _formBuilder.group({
-            id: new FormControl('111', Validators.required)
-           // name: new FormControl('', Validators.required),
-            //price:new FormControl('', Validators.required),
-            //date:new FormControl('', Validators.required)
-        });
-        */
     }
     BookComponent.prototype.ngOnInit = function () {
     };

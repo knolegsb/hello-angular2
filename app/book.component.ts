@@ -8,26 +8,27 @@ import {FormControl, FormGroup, Validators, FormBuilder} from '@angular/forms';
 })
 
 export class BookComponent {
-    bookForm: FormGroup = new FormGroup({
-        id: new FormControl('004', Validators.required),
-        name: new FormControl('Android Game Programming', Validators.required),
-        price: new FormControl('', Validators.required),
-        date: new FormControl('', Validators.required)
-    })
+    // bookForm: FormGroup = new FormGroup({
+    //     id: new FormControl('004', Validators.required),
+    //     name: new FormControl('Android Game Programming', Validators.required),
+    //     price: new FormControl('', Validators.required),
+    //     date: new FormControl('', Validators.required)
+    // })
 
+    bookForm:FormGroup;
     constructor(private _formBuilder:FormBuilder){
-        /*
+        
         this.bookForm= _formBuilder.group({
-            id: new FormControl('111', Validators.required)
-           // name: new FormControl('', Validators.required),
-            //price:new FormControl('', Validators.required),
-            //date:new FormControl('', Validators.required)        
+            id: new FormControl('004', Validators.required),
+            name: new FormControl('Android Game Programming', Validators.required),
+            price:new FormControl('', Validators.required),
+            date:new FormControl('', Validators.required)        
         });
-        */
+        
     }
 
     ngOnInit(){
-        
+
     }
 
     onSubmit(newform){
