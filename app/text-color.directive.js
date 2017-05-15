@@ -15,30 +15,41 @@ var TextColorDirective = (function () {
         this.el = el;
         this.renderer = renderer;
     }
-    TextColorDirective.prototype.onfocus = function () {
-        this.renderer.setElementStyle(this.el.nativeElement, 'background', 'yellow');
+    // @HostListener('focus') onfocus(){
+    //     this.renderer.setElementStyle(
+    //         this.el.nativeElement,
+    //         'background',
+    //         'yellow'
+    //     );
+    // }
+    // @HostListener('blur') onblur(){
+    //     this.renderer.setElementStyle(
+    //         this.el.nativeElement,
+    //         'background',
+    //         'white'
+    //     );
+    //     console.log(this.el);
+    // }
+    TextColorDirective.prototype.onFocus = function () {
+        this.renderer.setElementStyle(this.el.nativeElement, 'background', this.color);
     };
-    TextColorDirective.prototype.onblur = function () {
+    TextColorDirective.prototype.onBlur = function () {
         this.renderer.setElementStyle(this.el.nativeElement, 'background', 'white');
         console.log(this.el);
     };
     return TextColorDirective;
 }());
 __decorate([
-    core_1.HostListener('focus'),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
-], TextColorDirective.prototype, "onfocus", null);
-__decorate([
-    core_1.HostListener('blur'),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
-], TextColorDirective.prototype, "onblur", null);
+    core_1.Input('text-color'),
+    __metadata("design:type", Object)
+], TextColorDirective.prototype, "color", void 0);
 TextColorDirective = __decorate([
     core_1.Directive({
         selector: '[text-color]',
+        host: {
+            '(focus)': 'onFocus()',
+            '(blur)': 'onBlur()'
+        }
     }),
     __metadata("design:paramtypes", [core_1.ElementRef, core_1.Renderer])
 ], TextColorDirective);
