@@ -1,63 +1,21 @@
-import {Component} from '@angular/core';
-import {FormControl, FormGroup, Validators, FormBuilder} from '@angular/forms';
+import {Component, OnInit} from '@angular/core';
+//import {FormControl, FormGroup, Validators, FormBuilder} from '@angular/forms';
+import {BookService} from './book.service';
 
 @Component({
     selector: 'my-book',
     templateUrl: './app/book.component.html',
-    styleUrls:["./assets/stylesheets/book.component.css"]
+    styleUrls:["./assets/stylesheets/book.component.css"],
+    providers: [BookService]
 })
 
-export class BookComponent {
-    // bookForm: FormGroup = new FormGroup({
-    //     id: new FormControl('004', Validators.required),
-    //     name: new FormControl('Android Game Programming', Validators.required),
-    //     price: new FormControl('', Validators.required),
-    //     date: new FormControl('', Validators.required)
-    // })
-
-    bookForm:FormGroup;
-    constructor(private _formBuilder:FormBuilder){
-        
-        this.bookForm= _formBuilder.group({
-            // id: new FormControl('004', Validators.required),
-            // name: new FormControl('Android Game Programming', Validators.required),
-            // price:new FormControl('', Validators.required),
-            // date:new FormControl('', Validators.required)        
-            price: new FormControl('', Validators.compose([validNumber]))
-        });
-        
+export class BookComponent implements OnInit{
+    books = [];
+    //bookService: BookService;
+    constructor(private bookService:BookService){
+        //this.bookService = new BookService();
     }
-
     ngOnInit(){
-
+        this.books = this.bookService.getBooks();
     }
-
-    onSubmit(newform){
-        console.log(newform);
-        console.log(this.bookForm);
-        debugger;
-    }
-}
-
-function validNumber(c: FormControl){
-    if (c.value == ''){
-        return {
-                valid: false,
-                errorMsg: 'required'
-        };
-    }
-    if (c.value == ''){
-        return {
-            valid:false,
-            errorMsg: 'required'
-        }
-    }
-    let NUMBER_REGEXP = /^[0-9]/;
-    return NUMBER_REGEXP.test(c.value)?{
-        valid: true,
-        errorMsg:''
-    } : {
-        valid: false,
-        errorMsg: 'Must enter numbers'
-    };
 }

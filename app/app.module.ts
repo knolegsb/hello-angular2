@@ -6,11 +6,13 @@ import {BookImageComponent} from './book-image.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {TextSizeDirective} from './text-size.directive';
 import {TextColorDirective} from './text-color.directive';
+import {BookService} from './book.service';
 import {} from '@angular/forms';
 
 @NgModule({
   imports:      [ BrowserModule, FormsModule, ReactiveFormsModule],
   declarations: [ AppComponent, BookComponent, BookImageComponent, TextSizeDirective, TextColorDirective ],
-  bootstrap:    [ AppComponent ]
+  bootstrap:    [ AppComponent ],
+  providers: [BookService]
 })
 export class AppModule { }

@@ -14,6 +14,7 @@ var book_image_component_1 = require("./book-image.component");
 var forms_1 = require("@angular/forms");
 var text_size_directive_1 = require("./text-size.directive");
 var text_color_directive_1 = require("./text-color.directive");
+var book_service_1 = require("./book.service");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -23,7 +24,8 @@ AppModule = __decorate([
     core_1.NgModule({
         imports: [platform_browser_1.BrowserModule, forms_1.FormsModule, forms_1.ReactiveFormsModule],
         declarations: [app_component_1.AppComponent, book_component_1.BookComponent, book_image_component_1.BookImageComponent, text_size_directive_1.TextSizeDirective, text_color_directive_1.TextColorDirective],
-        bootstrap: [app_component_1.AppComponent]
+        bootstrap: [app_component_1.AppComponent],
+        providers: [book_service_1.BookService]
     })
 ], AppModule);
 exports.AppModule = AppModule;

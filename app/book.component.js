@@ -10,24 +10,17 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
-var forms_1 = require("@angular/forms");
+//import {FormControl, FormGroup, Validators, FormBuilder} from '@angular/forms';
+var book_service_1 = require("./book.service");
 var BookComponent = (function () {
-    function BookComponent(_formBuilder) {
-        this._formBuilder = _formBuilder;
-        this.bookForm = _formBuilder.group({
-            // id: new FormControl('004', Validators.required),
-            // name: new FormControl('Android Game Programming', Validators.required),
-            // price:new FormControl('', Validators.required),
-            // date:new FormControl('', Validators.required)        
-            price: new forms_1.FormControl('', forms_1.Validators.compose([validNumber]))
-        });
+    //bookService: BookService;
+    function BookComponent(bookService) {
+        this.bookService = bookService;
+        this.books = [];
+        //this.bookService = new BookService();
     }
     BookComponent.prototype.ngOnInit = function () {
-    };
-    BookComponent.prototype.onSubmit = function (newform) {
-        console.log(newform);
-        console.log(this.bookForm);
-        debugger;
+        this.books = this.bookService.getBooks();
     };
     return BookComponent;
 }());
@@ -35,31 +28,10 @@ BookComponent = __decorate([
     core_1.Component({
         selector: 'my-book',
         templateUrl: './app/book.component.html',
-        styleUrls: ["./assets/stylesheets/book.component.css"]
+        styleUrls: ["./assets/stylesheets/book.component.css"],
+        providers: [book_service_1.BookService]
     }),
-    __metadata("design:paramtypes", [forms_1.FormBuilder])
+    __metadata("design:paramtypes", [book_service_1.BookService])
 ], BookComponent);
 exports.BookComponent = BookComponent;
-function validNumber(c) {
-    if (c.value == '') {
-        return {
-            valid: false,
-            errorMsg: 'required'
-        };
-    }
-    if (c.value == '') {
-        return {
-            valid: false,
-            errorMsg: 'required'
-        };
-    }
-    var NUMBER_REGEXP = /^[0-9]/;
-    return NUMBER_REGEXP.test(c.value) ? {
-        valid: true,
-        errorMsg: ''
-    } : {
-        valid: false,
-        errorMsg: 'Must enter numbers'
-    };
-}
 //# sourceMappingURL=book.component.js.map
