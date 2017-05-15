@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import {FormControl, FormGroup, Validators, FormBuilder} from '@angular/forms';
 
 @Component({
     selector: 'my-book',
@@ -7,35 +8,32 @@ import {Component} from '@angular/core';
 })
 
 export class BookComponent {
-//   name = "Anroid Game Programming"
+    bookForm: FormGroup = new FormGroup({
+        id: new FormControl('004', Validators.required),
+        name: new FormControl('Android Game Programming', Validators.required),
+        price: new FormControl('', Validators.required),
+        date: new FormControl('', Validators.required)
+    })
 
-//   ngOnInit(){
-//       var el = document.getElementsByClassName("font-orange")[0];
-//       console.log(el);
-//   }
+    constructor(private _formBuilder:FormBuilder){
+        /*
+        this.bookForm= _formBuilder.group({
+            id: new FormControl('111', Validators.required)
+           // name: new FormControl('', Validators.required),
+            //price:new FormControl('', Validators.required),
+            //date:new FormControl('', Validators.required)        
+        });
+        */
+    }
 
-//   setName(name){
-//     this.name = name;
-//   }
-//   getName(){
-//     return this.name;
-//   }
+    ngOnInit(){
+        
+    }
 
-    //name = "Android";
     onSubmit(newform){
         console.log(newform);
+        console.log(this.bookForm);
         debugger;
     }
-
-    books = [
-        {id:'001', name:'Mobile Programming', price:31500, date:'20150115', img:'img001.jpg'},
-        {id:'002', name:'Apatche Cordova', price:31500, date:'20150131', img:'img002.jpg'},
-        {id:'003', name:'Web App Hybrid App', price:31500, date:'20150320', img:'img003.jpg'},
-        {id:'004', name:'OpenGL ES 2.0 Android Game Programming', price:31500, date:'20150601', img:'img004.jpg'},
-        {id:'005', name:'Ext JS6 Programming', price:31500, date:'20151005', img:'img005.jpg'},
-    ]
-    bookName = '';
-    onClick(name){
-        this.bookName = name;
-    }
 }
+

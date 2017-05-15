@@ -19,7 +19,7 @@ var AppModule = (function () {
 }());
 AppModule = __decorate([
     core_1.NgModule({
-        imports: [platform_browser_1.BrowserModule, forms_1.FormsModule],
+        imports: [platform_browser_1.BrowserModule, forms_1.FormsModule, forms_1.ReactiveFormsModule],
         declarations: [app_component_1.AppComponent, book_component_1.BookComponent, book_image_component_1.BookImageComponent],
         bootstrap: [app_component_1.AppComponent]
     })
